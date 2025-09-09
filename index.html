@@ -7,6 +7,20 @@
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+    (function () {
+      // 1) Lee el tema guardado o respeta el del sistema
+        const saved = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = saved || (prefersDark ? 'dark' : 'light');
+
+        // 2) Aplícalo ANTES de que el navegador pinte
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.style.colorScheme = theme; // evita fondo gris por defecto
+        })();
+    </script>
+
 </head>
 <body>
     <aside class="sidebar" aria-label="Menú lateral">
