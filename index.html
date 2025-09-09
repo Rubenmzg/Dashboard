@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Dashboard UI</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <aside class="sidebar" aria-label="Menú lateral">
+        <div class="sb-head">
+        <button id="sbToggle" class="icon-btn" aria-label="Colapsar menú" aria-expanded="true">☰</button>
+        <a class="brand" href="#"><span>Dash</span>UI</a>
+        </div>
+        <nav class="sb-nav">
+        <a class="item active" href="#"><span>🏠</span><b>Resumen</b></a>
+        <a class="item" href="#"><span💳>💳</span><b>Ventas</b></a>
+        <a class="item" href="#"><span>👥</span><b>Clientes</b></a>
+        <a class="item" href="#"><span>📦</span><b>Inventario</b></a>
+        <a class="item" href="#"><span>⚙️</span><b>Configuración</b></a>
+        </nav>
+        <div class="sb-foot">
+        <small>© 2025</small>
+        </div>
+    </aside>
+
+    <div class="page">
+        <header class="topbar">
+        <form class="search" role="search" onsubmit="return false;">
+            <input id="globalSearch" type="search" placeholder="Buscar…" aria-label="Buscar" />
+        </form>
+        <div class="actions">
+            <button id="themeToggle" class="icon-btn" aria-label="Cambiar tema">🌙</button>
+            <button class="icon-btn" title="Notificaciones" aria-label="Notificaciones">🔔</button>
+            <div class="avatar" title="Perfil" aria-label="Perfil">R</div>
+        </div>
+        </header>
+
+        <main class="content">
+        <section class="kpis">
+            <article class="kpi">
+            <span class="kpi-label">Ingresos</span>
+            <strong class="kpi-value" id="kpiRevenue">$0</strong>
+            <span class="kpi-trend" id="kpiRevenueTrend">—</span>
+            </article>
+            <article class="kpi">
+            <span class="kpi-label">Órdenes</span>
+            <strong class="kpi-value" id="kpiOrders">0</strong>
+            <span class="kpi-trend" id="kpiOrdersTrend">—</span>
+            </article>
+            <article class="kpi">
+            <span class="kpi-label">Clientes</span>
+            <strong class="kpi-value" id="kpiCustomers">0</strong>
+            <span class="kpi-trend" id="kpiCustomersTrend">—</span>
+            </article>
+            <article class="kpi">
+            <span class="kpi-label">Conversión</span>
+            <strong class="kpi-value" id="kpiConv">0%</strong>
+            <span class="kpi-trend" id="kpiConvTrend">—</span>
+            </article>
+        </section>
+
+        <section class="charts">
+            <article class="card">
+            <div class="card-header">
+                <h3>Ingresos (últimos 12 meses)</h3>
+                <select id="revRange" class="select">
+                <option value="12" selected>12m</option>
+                <option value="6">6m</option>
+                <option value="3">3m</option>
+                </select>
+            </div>
+            <canvas id="lineChart" height="120" aria-label="Gráfica de ingresos" role="img"></canvas>
+            </article>
+
+            <article class="card">
+            <div class="card-header">
+                <h3>Fuentes de tráfico</h3>
+            </div>
+            <canvas id="doughnutChart" height="120" aria-label="Gráfica de fuentes" role="img"></canvas>
+            </article>
+        </section>
+
+        <section class="card">
+            <div class="card-header">
+            <h3>Órdenes recientes</h3>
+            <div class="table-actions">
+                <input id="ordersSearch" type="search" class="input" placeholder="Buscar orden o cliente…" />
+                <select id="ordersPageSize" class="select">
+                <option>5</option><option selected>10</option><option>20</option>
+                </select>
+            </div>
+            </div>
+            <div class="table-wrap">
+            <table class="table" aria-label="Órdenes recientes">
+                <thead>
+                <tr>
+                    <th>ID</th><th>Cliente</th><th>Fecha</th><th>Estado</th><th class="num">Total</th>
+                </tr>
+                </thead>
+                <tbody id="ordersBody"></tbody>
+            </table>
+            </div>
+            <div class="pager">
+            <button id="prevPage" class="icon-btn" aria-label="Anterior">‹</button>
+            <span id="pageInfo" class="muted">1 / 1</span>
+            <button id="nextPage" class="icon-btn" aria-label="Siguiente">›</button>
+            </div>
+        </section>
+        </main>
+    </div>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="app.js" type="module"></script>
+</body>
+</html>
